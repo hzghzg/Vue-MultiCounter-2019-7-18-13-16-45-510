@@ -1,10 +1,8 @@
 <template>
   <div id="counter">
     <p>{{count}}</p>
-    <div @click="myclick">
-        <input type="button" value="点我+" @click="add">
-        <input type="button" value="点我-" @click="sub">
-    </div>
+    <lable @click="myclick1"><input type="button" value="点我+" @click="add"></lable>
+    <label @click="myclick2"><input type="button" value="点我-" @click="sub"></label>
   </div>
 </template>
 
@@ -23,13 +21,16 @@ export default {
     sub(){
       this.count--;
     },
-    myclick(){
-        this.$emit('trigger',this.count,parseInt(this.counterIndex))
-    }
+    myclick1(){
+        this.$emit('trigger_1')
+    },
+    myclick2(){
+        this.$emit('trigger_2')
+    },
+
   },
   components: {
-  },
-  props:['counterIndex']
+  }
 }
 </script>
 

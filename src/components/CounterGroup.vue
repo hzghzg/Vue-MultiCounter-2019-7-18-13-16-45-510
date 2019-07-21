@@ -1,8 +1,8 @@
 <template>
   <div id="countergroup">
-      <input type="text" v-model="counterNum">
+      <input type="text" v-model="counterNum" @input="resetSum">
       <div v-if="counterNum"  >
-          <counter v-for="index in parseInt(counterNum)" :key="index"  :counterIndex="keyList[parseInt(index)-1]" @trigger="getChildData"></counter>
+          <counter v-for="index in parseInt(counterNum)" :key="index" @trigger_1="getChildData_1" @trigger_2="getChildData_2"></counter>
           <lable>总和为：<input type="text" v-model.number="counterSum" ></lable>
       </div>
   </div>
@@ -14,15 +14,18 @@ export default {
   data(){
     return{
       counterNum:0,
-      keyList:new Array(this.counterNum).fill(0).map((item,index)=>index),
-      countList:new Array(this.counterNum).fill(0),
       counterSum:0
     };
   },
   methods:{
-      getChildData(childCount,childIndex){
-          this.countList[childIndex]=childCount;
-          this.counterSum=this.countList.reduce((p,c)=>p+c,0)
+      getChildData_1(){
+          this.counterSum++
+      },
+      getChildData_2(){
+          this.counterSum--
+      },
+      resetSum(){
+        this.counterSum=0;
       }
     
   },
