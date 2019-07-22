@@ -1,13 +1,13 @@
 <template>
   <div id="counter">
     <p>{{count}}</p>
-    <lable @click="myclick1"><input type="button" value="点我+" @click="add"></lable>
+    <label @click="myclick1"><input type="button" value="点我+" @click="add" ></label>
     <label @click="myclick2"><input type="button" value="点我-" @click="sub"></label>
   </div>
 </template>
 
 <script>
-export default {
+export default{
   name: 'counter',
   data(){
     return{
@@ -16,10 +16,11 @@ export default {
   },
   methods:{
     add(){
-      this.count++;
+      this.count++
+
     },
     sub(){
-      this.count--;
+      this.count--
     },
     myclick1(){
         this.$emit('trigger_1')
@@ -27,7 +28,13 @@ export default {
     myclick2(){
         this.$emit('trigger_2')
     },
-
+    beforeCreate(){
+      this.count=0
+    },
+    beforeDestroy(){
+      this.count=0
+      this.$emit("destroyTotal",this.count)
+    }
   },
   components: {
   }
