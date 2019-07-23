@@ -1,5 +1,6 @@
 <template>
   <div id="counter">
+    <!-- <p>{{count}}</p> -->
     <p>{{count}}</p>
     <label @click="myclick1"><input type="button" value="点我+" @click="add" ></label>
     <label @click="myclick2"><input type="button" value="点我-" @click="sub"></label>
@@ -27,15 +28,15 @@ export default{
     },
     myclick2(){
         this.$emit('trigger_2')
-    },
-    beforeCreate(){
+    }
+  },
+   beforeCreate(){
       this.count=0
     },
     beforeDestroy(){
-      this.count=0
       this.$emit("destroyTotal",this.count)
-    }
-  },
+      this.count=0
+    },
   components: {
   }
 }
